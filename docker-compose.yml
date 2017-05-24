@@ -1,0 +1,64 @@
+version: "3"
+
+services:
+  web_server:
+    container_name: httpd
+    build: ./containers/${HTTP_SERVER_IMAGE}
+    ports:
+      - 8080:80
+    volumes:
+      - ${PHP_MOUNT_POINT}:/var/www:ro
+    environment:
+      - PHP_IP="10.10.10.20"
+      - PHP_DOCUMENT_ROOT=${PHP_DOCUMENT_ROOT}
+    links:
+      - php
+    depends_on:
+      - php
+    networks:
+      docker-stack:
+        ipv4_address: 10.10.10.10
+
+  php:
+    container_name: php
+    build: ./containers/${PHP_SERVER_IMAGE}
+    expose:
+      - 9000
+    volumes:
+      - ${PHP_MOUNT_POINT}:/var/www
+      - ./var/logs/php:/var/www/var/logs
+    links:
+      - db
+    networks:
+      docker-stack:
+        ipv4_address: 10.10.10.20
+
+  db:
+    container_name: db
+    build: ./containers/${DB_SERVER_IMAGE}
+    expose:
+      - 3306
+    volumes:
+      - docker_db:/var/lib/mysql-5.5
+    environment:
+      MYSQL_PORT: ${MYSQL_PORT}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      docker-stack:
+        ipv4_address: 10.10.10.30
+
+volumes:
+  docker_db:
+
+networks:
+  docker-stack:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.10.10.0/8
