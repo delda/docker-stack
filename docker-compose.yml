@@ -9,8 +9,8 @@ services:
     volumes:
       - ${PHP_MOUNT_POINT}:/var/www:ro
     environment:
-      - PHP_IP="10.10.10.20"
-      - PHP_DOCUMENT_ROOT=${PHP_DOCUMENT_ROOT}
+      PHP_IP: 10.10.10.20
+      PHP_DOCUMENT_ROOT: ${PHP_DOCUMENT_ROOT}
     links:
       - php
     depends_on:
