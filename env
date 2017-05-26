@@ -1,16 +1,29 @@
-# Choose HTTP Server Image
+##### Choose images version
+### Choose HTTP server image between:
+# apache-2.4
 HTTP_SERVER_IMAGE=
-
-# Choose Database Server Image
+### Choose Database Server Image between:
+# mysql-5.5
 DB_SERVER_IMAGE=
-MYSQL_PORT=
-MYSQL_ROOT_PASSWORD=
-MYSQL_DATABASE=
-MYSQL_USER=
-MYSQL_PASSWORD=
-MYSQL_DATADIR=
-
-# Choose PHP Server Image
+### Choose PHP Server Image between:
+# php-fpm-7.0
 PHP_SERVER_IMAGE=
-PHP_MOUNT_POINT=
-PHP_DOCUMENT_ROOT=
+
+##### Local mount points
+# NB: must be a subdirectory of this project
+### Local path of web project
+PHP_MOUNT_POINT=./data/luigipetronzo
+### Path for database contents
+DB_DATADIR=./usr/mysql
+
+##### MySQL configuration
+MYSQL_PORT=3306
+MYSQL_ROOT_PASSWORD=root_sansipro
+MYSQL_DATABASE=www_sansimeoneprofeta
+MYSQL_USER=sansipro_user
+MYSQL_PASSWORD=sansipro_password
+
+##### Other HTTP and PHP servers
+### Mount point on
+PHP_DOCUMENT_ROOT=/var/www/web
+
