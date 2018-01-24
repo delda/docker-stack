@@ -4,7 +4,7 @@ MAINTAINER delda <info@davidedellerba.it>
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
-    apt-get -y install wget && \
+    apt-get -y install wget vim && \
     echo "deb http://packages.dotdeb.org jessie all" > /etc/apt/sources.list.d/dotdeb.list && \
     wget -qO - https://www.dotdeb.org/dotdeb.gpg | apt-key add - && \
     apt-get update && \
