@@ -18,10 +18,10 @@ DB_DATADIR=./usr/mysql
 
 ##### MySQL configuration
 MYSQL_PORT=3306
-MYSQL_ROOT_PASSWORD=root_sansipro
-MYSQL_DATABASE=www_sansimeoneprofeta
-MYSQL_USER=sansipro_user
-MYSQL_PASSWORD=sansipro_password
+MYSQL_ROOT_PASSWORD=
+MYSQL_DATABASE=
+MYSQL_USER=
+MYSQL_PASSWORD=
 
 ##### Other HTTP and PHP servers
 ### Mount point on
